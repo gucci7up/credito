@@ -1,0 +1,53 @@
+/* Factura térmica 58mm */
+@page {
+  size: 58mm auto;
+  margin: 2mm;
+}
+
+html, body {
+  width: 58mm;
+  background: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #000;
+}
+
+.ticket {
+  width: 58mm;
+}
+
+.center { text-align: center; }
+.right { text-align: right; }
+.muted { color: #333; }
+.hr { border-top: 1px dashed #000; margin: 6px 0; }
+
+.btn-print {
+  display: inline-block;
+  padding: 8px 10px;
+  border: 1px solid #111;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.logo {
+  max-width: 46mm;
+  max-height: 20mm;
+  object-fit: contain;
+}
+
+.items { width: 100%; border-collapse: collapse; }
+.items td { padding: 2px 0; vertical-align: top; }
+
+.item-name {
+  max-width: 32mm;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Ocultar UI en impresión */
+@media print {
+  .no-print { display: none !important; }
+}
+
