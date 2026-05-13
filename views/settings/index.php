@@ -1,5 +1,5 @@
-<div class="d-flex align-items-center justify-content-between mb-3">
-  <h4 class="mb-0">Configuración</h4>
+<div class="app-toolbar">
+  <h4>Configuración</h4>
 </div>
 
 <?php if (!empty($success)): ?>
@@ -27,8 +27,8 @@
   $logoPath = $settings['logo_path'] ?? '';
 ?>
 
-<div class="card">
-  <div class="card-body">
+<div class="app-card">
+  <div class="app-card-body app-form">
     <form method="post" enctype="multipart/form-data">
       <div class="row g-3">
         <div class="col-md-6">
@@ -77,8 +77,8 @@
         </div>
       </div>
 
-      <div class="mt-3 d-flex justify-content-end">
-        <button class="btn btn-primary">Guardar</button>
+      <div class="mt-3 d-grid">
+        <button class="app-btn app-btn--primary app-btn--block" type="submit"><i class="fa-solid fa-check"></i> Guardar</button>
       </div>
     </form>
   </div>

@@ -1,6 +1,6 @@
-<div class="d-flex align-items-center justify-content-between mb-3">
-  <h4 class="mb-0">Nueva venta</h4>
-  <a class="btn btn-outline-secondary" href="/?r=sales/index">Ver ventas</a>
+<div class="app-toolbar">
+  <h4>Nueva venta</h4>
+  <a class="app-btn" href="/?r=sales/index"><i class="fa-solid fa-list"></i> Ver</a>
 </div>
 
 <?php if (!empty($errors)): ?>
@@ -14,7 +14,7 @@
   </div>
 <?php endif; ?>
 
-<form method="post" id="saleForm">
+<form method="post" id="saleForm" class="app-form">
   <div class="row g-3">
     <div class="col-md-3">
       <label class="form-label">Tipo de venta</label>
@@ -49,12 +49,12 @@
     </div>
   </div>
 
-  <div class="card mt-3">
-    <div class="card-header bg-white fw-semibold d-flex align-items-center justify-content-between">
+  <div class="app-card" style="margin-top:12px;">
+    <div class="app-card-header">
       <div>Productos (se ingresan manualmente)</div>
-      <button type="button" class="btn btn-sm btn-outline-primary" id="addRow">Agregar producto</button>
+      <button type="button" class="app-btn" id="addRow"><i class="fa-solid fa-plus"></i> Agregar</button>
     </div>
-    <div class="card-body">
+    <div class="app-card-body">
       <div class="table-responsive">
         <table class="table table-sm align-middle" id="itemsTable">
           <thead>
@@ -93,8 +93,8 @@
         </div>
 
         <div class="col-md-6">
-          <div class="card bg-light">
-            <div class="card-body py-2">
+          <div class="app-card">
+            <div class="app-card-body" style="padding:12px;">
               <div class="d-flex justify-content-between"><span>Subtotal</span><span id="subtotal">0.00</span></div>
               <div class="d-flex justify-content-between <?= $itbisEnabledGlobal ? '' : 'd-none' ?>" id="itbisRow">
                 <span>ITBIS (<?= number_format((float)$itbisPercentGlobal, 2) ?>%)</span>
@@ -112,9 +112,9 @@
         </div>
       </div>
 
-      <div class="mt-3 d-flex justify-content-end gap-2">
-        <a class="btn btn-outline-secondary" href="/?r=sales/index">Cancelar</a>
-        <button class="btn btn-primary">Guardar venta</button>
+      <div class="mt-3 d-grid gap-2">
+        <button class="app-btn app-btn--primary app-btn--block" type="submit"><i class="fa-solid fa-check"></i> Guardar venta</button>
+        <a class="app-btn app-btn--block" href="/?r=sales/index">Cancelar</a>
       </div>
     </div>
   </div>

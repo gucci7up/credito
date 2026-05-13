@@ -4,9 +4,9 @@
   $action = $isEdit ? '/?r=clients/edit&id=' . (int)$id : '/?r=clients/create';
 ?>
 
-<div class="d-flex align-items-center justify-content-between mb-3">
-  <h4 class="mb-0"><?= htmlspecialchars($title) ?></h4>
-  <a class="btn btn-outline-secondary" href="/?r=clients/index">Volver</a>
+<div class="app-toolbar">
+  <h4><?= htmlspecialchars($title) ?></h4>
+  <a class="app-btn" href="/?r=clients/index"><i class="fa-solid fa-arrow-left"></i> Volver</a>
 </div>
 
 <?php if (!empty($errors)): ?>
@@ -19,8 +19,8 @@
   </div>
 <?php endif; ?>
 
-<div class="card">
-  <div class="card-body">
+<div class="app-card">
+  <div class="app-card-body app-form">
     <form method="post" action="<?= htmlspecialchars($action) ?>">
       <div class="row g-3">
         <div class="col-md-6">
@@ -41,9 +41,9 @@
         </div>
       </div>
 
-      <div class="mt-3 d-flex justify-content-end gap-2">
-        <a class="btn btn-outline-secondary" href="/?r=clients/index">Cancelar</a>
-        <button class="btn btn-primary">Guardar</button>
+      <div class="mt-3 d-grid gap-2">
+        <button class="app-btn app-btn--primary app-btn--block" type="submit"><i class="fa-solid fa-check"></i> Guardar</button>
+        <a class="app-btn app-btn--block" href="/?r=clients/index">Cancelar</a>
       </div>
     </form>
   </div>
