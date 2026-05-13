@@ -5,31 +5,50 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: perfumes_app
-    ports:
-      - "8080:80"
-    env_file:
-      - .env
+    restart: unless-stopped
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      APP_DEBUG: ${APP_DEBUG:-0}
+      APP_URL: ${APP_URL:-http://localhost}
+      DB_HOST: ${DB_HOST:-db}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_NAME: ${DB_NAME:-perfumes_pos}
+      DB_USER: ${DB_USER:-perfumes}
+      DB_PASS: ${DB_PASS:-perfumes123}
     volumes:
-      - ./:/var/www/html
+      - uploads_data:/var/www/html/public/uploads
     depends_on:
       - db
+    networks:
+      - dokploy-network
+      - internal
 
   db:
     image: mysql:8.0
-    container_name: perfumes_db
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
-    ports:
-      - "3306:3306"
+      MYSQL_DATABASE: ${DB_NAME:-perfumes_pos}
+      MYSQL_USER: ${DB_USER:-perfumes}
+      MYSQL_PASSWORD: ${DB_PASS:-perfumes123}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS:-change_me_root_password}
     volumes:
       - db_data:/var/lib/mysql
       - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - internal
 
 volumes:
   db_data:
+  uploads_data:
+
+networks:
+  dokploy-network:
+    external: true
+  internal:
+    internal: true

@@ -1,5 +1,9 @@
 <?php
 /** @var string $viewFile */
+$viewRel = str_replace('\\', '/', (string)$viewFile);
+$isDashboard = str_contains($viewRel, '/views/dashboard/');
+$bizName = $appSettings['business_name'] ?? 'Perfumes POS';
+$logoPath = $appSettings['logo_path'] ?? '';
 ?>
 <!doctype html>
 <html lang="es">
@@ -8,16 +12,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Perfumes POS</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <?php if ($isDashboard): ?>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <?php endif; ?>
   <link href="/assets/css/app.css" rel="stylesheet">
 </head>
-<body>
+<body<?= $isDashboard ? ' class="dashv2"' : '' ?>>
+<?php if ($isDashboard): ?>
+  <?php require $viewFile; ?>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/app.js"></script>
+</body>
+</html>
+<?php exit; ?>
+<?php endif; ?>
   <div class="d-flex">
     <aside class="sidebar border-end">
       <div class="p-3 border-bottom">
-        <?php
-          $bizName = $appSettings['business_name'] ?? 'Perfumes POS';
-          $logoPath = $appSettings['logo_path'] ?? '';
-        ?>
         <?php if (!empty($logoPath)): ?>
           <div class="text-center mb-2">
             <img src="/<?= htmlspecialchars($logoPath) ?>" alt="Logo" style="max-width: 120px; max-height: 60px;">
