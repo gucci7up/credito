@@ -5,22 +5,13 @@ $creditPct = $todayTotal > 0 ? (int)round(((float)$stats['creditos_hoy'] / $toda
 $bizName = $bizName ?? ($appSettings['business_name'] ?? 'Perfumes POS');
 $logoPath = $logoPath ?? ($appSettings['logo_path'] ?? '');
 
-$activityBg = [
-  'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c8e88356-8df5-4ac5-9e1f-5b9e99685021',
-  'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/69437d08-f203-4905-8cf5-05411cc28c19',
-  'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/7568e0ff-edb5-43dd-bff5-aed405fc32d9',
-  'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/467cf682-03fb-4fae-b129-5d4f5db304dd',
-  'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/3bab6a71-c842-4a50-9fed-b4ce650cb478',
-  'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e1a66078-1927-4828-b793-15c403d06411',
-];
-
 $metricItems = [
-  ['class' => 'img-one', 'label' => 'Ventas del día', 'value' => $currency . ' ' . number_format((float)$stats['ventas_hoy'], 2), 'img' => $activityBg[0]],
-  ['class' => 'img-two', 'label' => 'Crédito (hoy)', 'value' => $currency . ' ' . number_format((float)$stats['creditos_hoy'], 2), 'img' => $activityBg[1]],
-  ['class' => 'img-three', 'label' => 'Cobros del día', 'value' => $currency . ' ' . number_format((float)$stats['cobros_hoy'], 2), 'img' => $activityBg[2]],
-  ['class' => 'img-four', 'label' => 'Clientes con deuda', 'value' => (string)(int)$stats['clientes_con_deuda'], 'img' => $activityBg[3]],
-  ['class' => 'img-five', 'label' => 'Facturas vencidas', 'value' => (string)(int)$stats['vencidas'], 'img' => $activityBg[4]],
-  ['class' => 'img-six', 'label' => 'Vencen hoy', 'value' => (string)(int)$stats['vencen_hoy'], 'img' => $activityBg[5]],
+  ['class' => 'img-one', 'type' => 'cash', 'icon' => 'fa-sack-dollar', 'label' => 'Ventas del día', 'value' => $currency . ' ' . number_format((float)$stats['ventas_hoy'], 2)],
+  ['class' => 'img-two', 'type' => 'credit', 'icon' => 'fa-credit-card', 'label' => 'Crédito (hoy)', 'value' => $currency . ' ' . number_format((float)$stats['creditos_hoy'], 2)],
+  ['class' => 'img-three', 'type' => 'payments', 'icon' => 'fa-hand-holding-dollar', 'label' => 'Cobros del día', 'value' => $currency . ' ' . number_format((float)$stats['cobros_hoy'], 2)],
+  ['class' => 'img-four', 'type' => 'debtors', 'icon' => 'fa-user-clock', 'label' => 'Clientes con deuda', 'value' => (string)(int)$stats['clientes_con_deuda']],
+  ['class' => 'img-five', 'type' => 'overdue', 'icon' => 'fa-triangle-exclamation', 'label' => 'Facturas vencidas', 'value' => (string)(int)$stats['vencidas']],
+  ['class' => 'img-six', 'type' => 'due', 'icon' => 'fa-calendar-day', 'label' => 'Vencen hoy', 'value' => (string)(int)$stats['vencen_hoy']],
 ];
 
 $colorClasses = ['activity-one', 'activity-two', 'activity-three', 'activity-four'];
@@ -84,8 +75,8 @@ $colorClasses = ['activity-one', 'activity-two', 'activity-three', 'activity-fou
         <h1>Resumen</h1>
         <div class="activity-container">
           <?php foreach ($metricItems as $m): ?>
-            <div class="image-container <?= htmlspecialchars($m['class']) ?>">
-              <img src="<?= htmlspecialchars($m['img']) ?>" alt="">
+            <div class="image-container dashv2-vcard dashv2-vcard--<?= htmlspecialchars($m['type']) ?> <?= htmlspecialchars($m['class']) ?>">
+              <i class="fa-solid <?= htmlspecialchars($m['icon']) ?> dashv2-vcard-icon" aria-hidden="true"></i>
               <div class="overlay">
                 <div class="metric">
                   <div class="metric-label"><?= htmlspecialchars($m['label']) ?></div>

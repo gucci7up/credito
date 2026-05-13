@@ -59,14 +59,18 @@ body.dashv2 nav ul li a {
 }
 
 body.dashv2 {
+  --dash-red: #d11a2a;
+  --dash-black: #0b0b0f;
+  --dash-white: #ffffff;
+  --dash-bg: #f6f7fb;
+  --dash-text: #111827;
+  --dash-muted: #64748b;
   font-family: "Nunito", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5baf8325-ed69-40b0-b9d2-d8c5d2bde3b0);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 45%, #ffffff 100%);
 }
 
 body.dashv2 main {
@@ -83,7 +87,7 @@ body.dashv2 main {
 
 body.dashv2 .main-menu {
   overflow: hidden;
-  background: rgb(73, 57, 113);
+  background: var(--dash-black);
   padding-top: 10px;
   border-radius: 15px 0 0 15px;
   font-family: "Roboto", sans-serif;
@@ -139,7 +143,7 @@ body.dashv2 .nav-item b:nth-child(1)::before {
   width: 100%;
   height: 100%;
   border-bottom-right-radius: 20px;
-  background: rgb(73, 57, 113);
+  background: var(--dash-black);
 }
 
 body.dashv2 .nav-item b:nth-child(2) {
@@ -159,7 +163,7 @@ body.dashv2 .nav-item b:nth-child(2)::before {
   width: 100%;
   height: 100%;
   border-top-right-radius: 20px;
-  background: rgb(73, 57, 113);
+  background: var(--dash-black);
 }
 
 body.dashv2 .nav-item.active b:nth-child(1),
@@ -169,8 +173,9 @@ body.dashv2 .nav-item.active b:nth-child(2) {
 
 body.dashv2 .nav-item.active a {
   text-decoration: none;
-  color: #000;
+  color: var(--dash-text);
   background: rgb(254, 254, 254);
+  box-shadow: inset 4px 0 0 var(--dash-red);
 }
 
 body.dashv2 .nav-icon {
@@ -247,6 +252,44 @@ body.dashv2 .image-container {
   overflow: hidden;
 }
 
+body.dashv2 .dashv2-vcard {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #1f2937 40%, var(--dash-red) 100%);
+}
+
+body.dashv2 .dashv2-vcard--cash {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #1f2937 40%, var(--dash-red) 100%);
+}
+
+body.dashv2 .dashv2-vcard--credit {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #111827 40%, #b91c1c 100%);
+}
+
+body.dashv2 .dashv2-vcard--payments {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #0f172a 40%, #ef4444 100%);
+}
+
+body.dashv2 .dashv2-vcard--debtors {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #111827 40%, #7f1d1d 100%);
+}
+
+body.dashv2 .dashv2-vcard--overdue {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #111827 30%, #dc2626 100%);
+}
+
+body.dashv2 .dashv2-vcard--due {
+  background: linear-gradient(135deg, var(--dash-black) 0%, #111827 40%, #f87171 100%);
+}
+
+body.dashv2 .dashv2-vcard-icon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 44px;
+  color: rgba(255, 255, 255, 0.24);
+  z-index: 0;
+  pointer-events: none;
+}
+
 body.dashv2 .image-container img {
   width: 100%;
   height: 100%;
@@ -268,11 +311,12 @@ body.dashv2 .overlay {
     180deg,
     transparent,
     transparent,
-    rgba(3, 3, 185, 0.5)
+    rgba(0, 0, 0, 0.55)
   );
   border-radius: 10px;
   transition: all 0.6s linear;
   padding: 10px;
+  z-index: 1;
 }
 
 body.dashv2 .image-container:hover .overlay {
@@ -326,27 +370,27 @@ body.dashv2 .day-and-activity {
 }
 
 body.dashv2 .activity-one {
-  background-color: rgb(124, 136, 224, 0.5);
+  background-color: rgba(209, 26, 42, 0.18);
   background-image: linear-gradient(
     240deg,
-    rgb(124, 136, 224) 0%,
-    #c3f4fc 100%
+    rgba(209, 26, 42, 0.35) 0%,
+    rgba(255, 255, 255, 0.95) 100%
   );
 }
 
 body.dashv2 .activity-two {
-  background-color: #aee2a4a1;
-  background-image: linear-gradient(240deg, #e5a243ab 0%, #f7f7aa 90%);
+  background-color: rgba(17, 24, 39, 0.08);
+  background-image: linear-gradient(240deg, rgba(17, 24, 39, 0.12) 0%, rgba(255, 255, 255, 0.95) 90%);
 }
 
 body.dashv2 .activity-three {
-  background-color: #ecfcc376;
-  background-image: linear-gradient(240deg, #97e7d1 0%, #ecfcc3 100%);
+  background-color: rgba(209, 26, 42, 0.12);
+  background-image: linear-gradient(240deg, rgba(209, 26, 42, 0.2) 0%, rgba(255, 255, 255, 0.95) 100%);
 }
 
 body.dashv2 .activity-four {
-  background-color: #e6a7c3b5;
-  background-image: linear-gradient(240deg, #fc8ebe 0%, #fce5c3 100%);
+  background-color: rgba(17, 24, 39, 0.1);
+  background-image: linear-gradient(240deg, rgba(17, 24, 39, 0.16) 0%, rgba(255, 255, 255, 0.95) 100%);
 }
 
 body.dashv2 .day {
@@ -469,7 +513,7 @@ body.dashv2 .box-one {
   align-items: center;
   justify-content: space-between;
   grid-area: 1 / 1 / 2 / 3;
-  background-color: rgba(185, 159, 237, 0.6);
+  background-color: rgba(209, 26, 42, 0.14);
   padding: 15px;
   font-size: 1rem;
   font-weight: 700;
@@ -483,7 +527,7 @@ body.dashv2 .box-two {
   font-weight: 700;
   padding: 12px;
   grid-area: 2 / 1 / 3 / 2;
-  background-color: rgba(238, 184, 114, 0.6);
+  background-color: rgba(17, 24, 39, 0.08);
 }
 
 body.dashv2 .box-three {
@@ -494,12 +538,12 @@ body.dashv2 .box-three {
   font-weight: 700;
   padding: 12px;
   grid-area: 2 / 2 / 3 / 3;
-  background-color: rgba(184, 224, 192, 0.6);
+  background-color: rgba(209, 26, 42, 0.1);
 }
 
 body.dashv2 .dashv2-icon {
   font-size: 44px;
-  color: rgba(73, 57, 113, 0.85);
+  color: rgba(209, 26, 42, 0.9);
   margin-left: auto;
 }
 
@@ -525,7 +569,7 @@ body.dashv2 .icon-container {
 }
 
 body.dashv2 .dashv2-icon-link {
-  color: rgb(73, 57, 113);
+  color: var(--dash-red);
 }
 
 body.dashv2 .user-info h4 {
@@ -544,11 +588,12 @@ body.dashv2 .active-calories {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(214, 227, 248);
+  background-color: var(--dash-white);
   padding: 0 10px;
   margin: 15px 10px 0;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+  border: 1px solid rgba(17, 24, 39, 0.08);
 }
 
 body.dashv2 .active-calories h1 {
@@ -600,10 +645,10 @@ body.dashv2 .circle {
   aspect-ratio: 1/1;
   background: conic-gradient(
     from 0deg,
-    #590b94 0%,
-    #590b94 0% var(--i),
-    #b3b2b2 var(--i),
-    #b3b2b2 100%
+    var(--dash-red) 0%,
+    var(--dash-red) 0% var(--i),
+    #e5e7eb var(--i),
+    #e5e7eb 100%
   );
   border-radius: 50%;
   display: flex;
@@ -615,7 +660,7 @@ body.dashv2 .circle::before {
   content: "";
   position: absolute;
   inset: 10px;
-  background-color: rgb(214, 227, 248);
+  background-color: var(--dash-white);
   border-radius: 50%;
 }
 
@@ -668,7 +713,7 @@ body.dashv2 .dashv2-card-user-info h2 {
 
 body.dashv2 .dashv2-card-icon {
   font-size: 18px;
-  color: rgb(73, 57, 113);
+  color: var(--dash-red);
 }
 
 body.dashv2 .dashv2-card p {
@@ -678,7 +723,7 @@ body.dashv2 .dashv2-card p {
 }
 
 body.dashv2 .dashv2-link {
-  color: rgb(73, 57, 113);
+  color: var(--dash-red);
   font-weight: 800;
   text-decoration: none;
 }
